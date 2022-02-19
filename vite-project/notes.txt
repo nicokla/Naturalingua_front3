@@ -1,0 +1,15 @@
+<script setup>
+
+// https://v3.vuejs.org/api/sfc-script-setup.html#defineprops-and-defineemits
+import { defineProps } from 'vue';
+// const props = defineProps({
+//   foo: String
+// })
+
+import { useRoute, useRouter } from 'vue-router'
+const route = useRoute()
+const router = useRouter()
+const fileName=route.params.fileName
+
+
+</script>
