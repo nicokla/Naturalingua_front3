@@ -66,7 +66,7 @@ export default {
 		cancelURL(){return `${this.backend}/cancel`},
 		stripeUrl(){
 			// localhost:5000/stripe_pay/french/nicolas.klarsfeld@gmail.com?id=E3Blxs0Wfco&id=StXPXDij6rw
-			return `${this.backend}/stripe_pay2/${this.language}/${this.email}}`
+			return `${this.backend}/stripe_pay2/${this.language}/${this.email}`
 		}
 	},
 	async mounted() {
