@@ -4,7 +4,7 @@
 			Purchase summary
 		</h1>
 		<div class="m-3">
-			After payment, we will send your {{this.$route.params.videoIds.length}} documents to study <b>{{language}}</b> to the email address <b>{{email}}</b> for {{this.$route.params.videoIds.length * 1.2}} euros. If the language or the email address is incorrect, please come back to the previous page and choose the correct document and email address.
+			After payment, we will send your document to study <b>{{language}}</b> to the email address <b>{{email}}</b> for 5 euros. If the language or the email address is incorrect, please come back to the previous page and choose the correct document and email address.
 		</div>
     <stripe-checkout
       ref="checkoutRef"
@@ -41,13 +41,12 @@ export default {
       loading: false,
       lineItems: [
         {
-          price: 'price_1KTjqpL309RW9KQTqNnsBorh',
-          quantity: this.$route.params.videoIds.length,
+          price: 'price_1KVHfCL309RW9KQT03B5fosI',
+          quantity: 1,
         },
       ],
 			email:this.$route.params.email,
 			language:this.$route.params.language,
-			videoIds:this.$route.params.videoIds,
 			sessionId:''
     };
   },
@@ -67,7 +66,7 @@ export default {
 		cancelURL(){return `${this.backend}/cancel`},
 		stripeUrl(){
 			// localhost:5000/stripe_pay/french/nicolas.klarsfeld@gmail.com?id=E3Blxs0Wfco&id=StXPXDij6rw
-			return `${this.backend}/stripe_pay/${this.language}/${this.email}?id=${this.$route.params.videoIds.join('&id=')}`
+			return `${this.backend}/stripe_pay2/${this.language}/${this.email}}`
 		}
 	},
 	async mounted() {

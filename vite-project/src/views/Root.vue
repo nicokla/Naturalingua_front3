@@ -2,7 +2,6 @@
 import { ref, computed, unref, watch } from 'vue';
 import { useRouter } from 'vue-router'
 const router = useRouter()
-import listOfFiles from '../listOfFiles.json'
 
 let languages = ['Arabic', 'Chinese', 'French','Greek','Hebrew','Hindi','Italian','Japanese','Korean','Persian','Portuguese','Russian','Spanish','Thai','Turkish','Vietnamese']
 let language=ref(languages[0])
@@ -22,41 +21,53 @@ let buttonClass=computed(()=>{
 		return 'my-button-disabled'
 })
 
+// '#upload-form'    'http://localhost:5000/uploadAnglais'
+async function tryUpload(selector, path){
+  let formElement = document.querySelector(selector)
+  let data = new FormData(formElement)
+  const response = await fetch( path , {
+    method: 'POST',
+    headers: {
+      'email':email.value
+    },
+    body: data
+  } )
+  let text=await response.text()
+  return {mystatus: response.status, text: text}
+}
 
-const move = () => {
-  if (!isDisabled.value)
-    router.push({ 
-			name:'Suite',
-      params: {
-				email: unref(email),
-				language: unref(language),
-      }
-    })
-	else{
-		window.alert('Please write your email adress so that we can send you the document, and add at least one youtube video.')
-	}
+async function move() {
+  if (isDisabled.value){
+    window.alert('Please write your email adress so that we can send you the pdf document.')
+    return
+  }
+
+  let mystatus, text;
+  ({mystatus, text} = await tryUpload('#upload-form', 'https://yshegsjk.xyz/uploadAnglais'))
+  if (mystatus != 200){
+    window.alert(`Error ${mystatus}: ${text}`)
+    return
+  }
+
+  ({mystatus, text} = await tryUpload('#upload-form2', 'https://yshegsjk.xyz/uploadJaponais'))
+  if (mystatus != 200){
+    window.alert(`Error ${mystatus}: ${text}`)
+    return
+  }
+
+  router.push({ 
+    name:'Suite',
+    params: {
+      email: unref(email),
+      language: unref(language),
+    }
+  })
 }
 
 function youtube_parser(url){
 	var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
 	var match = url.match(regExp);
 	return (match&&match[7].length==11)? match[7] : false;
-}
-
-async function handleFileUpload( e ){
-  let formData = new FormData();
-  formData.append( 'method', 'POST' );
-  formData.append( 'file', e.target.files[0] );
-
-  await fetch( 'http://localhost:5000/upload', {
-    method: 'POST',
-    headers: {
-      // 'Authorization': 'Bearer '+this.token,
-      'Accept': 'application/json',
-      'Content-Type': 'multipart/form-data'
-    },
-    body: formData
-  } )
 }
 
 
@@ -70,8 +81,8 @@ async function handleFileUpload( e ){
 		<h1 class="text-3xl mb-3 mt-2">
 			NaturaLingua
 		</h1>
-		<div class="text-base">
-			Using our website, you can download movies subtitles as pdf documents, to learn new languages easily.<br>Please pick the language you are studying, and upload the two subtitle files in either of the following formats: .srt, .vtt, .xml, .ass. Subtitles can be found on <a href="opensubtitles.org">opensubtitles.org</a> or on netflix using the technique described <a href="https://github.com/isaacbernat/netflix-to-srt">here</a>. The price of a pdf document is 5 euro.
+		<div>
+			Using our website, you can download movies subtitles as pdf documents, to learn new languages easily.<br>Please pick the language you are studying, and upload the two subtitle files in either of the following formats: .srt, .vtt, .xml, .ass. Subtitles can be found on <a href="https://www.opensubtitles.org/">opensubtitles.org</a> or on netflix using the technique described <a href="https://github.com/isaacbernat/netflix-to-srt">here</a>. The price of a pdf document is 5 euro.
 		</div> 
 		
 		<div>
@@ -81,20 +92,28 @@ async function handleFileUpload( e ){
 			</select>
 		</div>
 
-    <form>
-      <input type="file" @change="handleFileUpload( $event )"/>
-    </form>
-    <!-- <form action="" method=post enctype=multipart/form-data> -->
-    <!-- <div>
-      <label>Select file to upload</label>
-      <input type="file">
-    </div>
-    <button type="submit">Convert</button> -->
-
 		<div>
 			email :
 			<input autocomplete="email" type="text" class="m-2 rounded border-1 border-black m-2" v-model="email" placeholder="type your email here"/>
 		</div>
+
+    <form id='upload-form'>
+      <label for="files">Subtitle file of language you know : </label>
+      <input
+        id='file-field'
+        name='files'
+        type='file'
+      >
+    </form>
+
+    <form id='upload-form2'>
+      <label for="files">Subtitle file of language you learn : </label>
+      <input
+        id='file-field2'
+        name='files'
+        type='file'
+        >
+    </form>
 
     <button :class="buttonClass" @click="move"> 
       Go to purchase summary
@@ -121,6 +140,11 @@ async function handleFileUpload( e ){
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+a {
+  color: blue;
+  text-decoration: underline blue;
 }
 .liste{
 	padding: 0.8em;
