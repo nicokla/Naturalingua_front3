@@ -11,11 +11,12 @@
       mode="payment"
       :pk="publishableKey"
       :lineItems="lineItems"
-      :successUrl="successURL"
+			:successUrl="successURL"
       :cancelUrl="cancelURL"
 			:sessionId="sessionId"
       @loading="v => loading = v"
     />
+
     <button class="my-button" @click="submit">Checkout</button>
   </div>
 </template>
@@ -62,8 +63,8 @@ export default {
     },
   },
 	computed:{
-		successURL(){return `${this.backend}/success/${this.email}`},
-		cancelURL(){return `${this.backend}/cancel`},
+		successURL(){return `https://getmoviessubtitles.netlify.app/success/${this.email}`},
+		cancelURL(){return `https://getmoviessubtitles.netlify.app/cancel`},
 		stripeUrl(){
 			// localhost:5000/stripe_pay/french/nicolas.klarsfeld@gmail.com?id=E3Blxs0Wfco&id=StXPXDij6rw
 			return `${this.backend}/stripe_pay2/${this.language}/${this.email}`

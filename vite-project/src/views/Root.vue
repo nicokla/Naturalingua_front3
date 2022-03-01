@@ -45,13 +45,13 @@ async function move() {
   let mystatus, text;
   ({mystatus, text} = await tryUpload('#upload-form', 'https://yshegsjk.xyz/uploadAnglais'))
   if (mystatus != 200){
-    window.alert(`Error ${mystatus}: ${text}`)
+    window.alert(`${text}`) // Error ${mystatus}:
     return
   }
 
   ({mystatus, text} = await tryUpload('#upload-form2', 'https://yshegsjk.xyz/uploadJaponais'))
   if (mystatus != 200){
-    window.alert(`Error ${mystatus}: ${text}`)
+    window.alert(`${text}`) // Error ${mystatus}: 
     return
   }
 
@@ -82,18 +82,18 @@ function youtube_parser(url){
 			NaturaLingua
 		</h1>
 		<div>
-			Using our website, you can download movies subtitles as pdf documents, to learn new languages easily.<br>Please pick the language you are studying, and upload the two subtitle files in either of the following formats: .srt, .vtt, .xml, .ass. Subtitles can be found on <a href="https://www.opensubtitles.org/">opensubtitles.org</a> or on netflix using the technique described <a href="https://github.com/isaacbernat/netflix-to-srt">here</a>. The price of a pdf document is 5 euro.
+			Using our website, you can download movies subtitles as bilingual pdf documents, to learn new languages easily. Our documents use the latin alphabet to make reading new languages easy and natural.<br>Please pick the language you are studying below, and upload the two subtitle files you want to convert to a bilingual pdf document. We support the following formats of subtitle files : .srt, .vtt, .xml, and .ass. Subtitles can be found on <a href="https://www.opensubtitles.org/">opensubtitles.org</a> or on netflix using the technique described <a href="https://github.com/isaacbernat/netflix-to-srt">here</a>. The price of a bilingual pdf document is 5 euro.
 		</div> 
 		
 		<div>
-			language: 
+			Language: 
 			<select v-model="language" class="m-2 rounded border-1 border-black">
 				<option v-for="bidule in languages" :id="bidule">{{bidule}}</option>
 			</select>
 		</div>
 
 		<div>
-			email :
+			Email :
 			<input autocomplete="email" type="text" class="m-2 rounded border-1 border-black m-2" v-model="email" placeholder="type your email here"/>
 		</div>
 
@@ -123,6 +123,9 @@ function youtube_parser(url){
       <ul>
         <li>
           <a href="https://naturalingua.netlify.app">https://naturalingua.netlify.app</a>
+        </li>
+        <li>
+          <a href="https://getyoutubesubtitles.netlify.app">https://getyoutubesubtitles.netlify.app</a>
         </li>
       </ul>
     </p>
