@@ -43,13 +43,15 @@ async function move() {
   }
 
   let mystatus, text;
-  ({mystatus, text} = await tryUpload('#upload-form', 'https://yshegsjk.xyz/uploadAnglais'))
+  ({mystatus, text} = await tryUpload('#upload-form', 'http://127.0.0.1:5000/uploadAnglais'))
+  // 'https://yshegsjk.xyz/uploadAnglais'
   if (mystatus != 200){
     window.alert(`${text}`) // Error ${mystatus}:
     return
   }
 
-  ({mystatus, text} = await tryUpload('#upload-form2', 'https://yshegsjk.xyz/uploadJaponais'))
+  ({mystatus, text} = await tryUpload('#upload-form2', 'http://127.0.0.1:5000/uploadJaponais'))
+  // 'https://yshegsjk.xyz/uploadJaponais'
   if (mystatus != 200){
     window.alert(`${text}`) // Error ${mystatus}: 
     return

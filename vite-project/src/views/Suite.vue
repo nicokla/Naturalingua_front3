@@ -35,7 +35,7 @@ export default {
   },
   data () {
     return {
-			backend:'https://yshegsjk.xyz', //'http://127.0.0.1:5000', // 'https://naturalingua.herokuapp.com'
+			backend: 'http://127.0.0.1:5000', //'https://yshegsjk.xyz', //'http://127.0.0.1:5000', // 'https://naturalingua.herokuapp.com'
 			//https://yshegsjk.xyz/
 			// publishableKey: 'pk_live_51KCkGtL309RW9KQT3X8xJbr279hnoVOInlYz1kNWOIzGM5DcBtH78r8BIPXQPKvMxEaerNCugl7pl3XvN79wK6vc00q4OIC5Cl', // import.meta.env.VITE_PUBLISHABLE_KEY_TEST,
 			publishableKey:'pk_live_51KCkGtL309RW9KQT3X8xJbr279hnoVOInlYz1kNWOIzGM5DcBtH78r8BIPXQPKvMxEaerNCugl7pl3XvN79wK6vc00q4OIC5Cl',
@@ -67,13 +67,14 @@ export default {
 		cancelURL(){return `https://getmoviessubtitles.netlify.app/cancel`},
 		stripeUrl(){
 			// localhost:5000/stripe_pay/french/nicolas.klarsfeld@gmail.com?id=E3Blxs0Wfco&id=StXPXDij6rw
-			return `${this.backend}/stripe_pay2/${this.language}/${this.email}`
+			// return `${this.backend}/stripe_pay2/${this.language}/${this.email}`
+			return `${this.backend}/test2/${this.language}/${this.email}`
 		}
 	},
 	async mounted() {
 		let truc= await fetch(this.stripeUrl)
-		let trucjson= await truc.json()
-		this.sessionId = trucjson.checkout_session_id
+		// let trucjson= await truc.json()
+		// this.sessionId = trucjson.checkout_session_id
 	}
 };
 
