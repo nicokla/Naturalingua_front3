@@ -82,7 +82,9 @@ function youtube_parser(url){
 			NaturaLingua
 		</h1>
 		<div>
-			Using our website, you can download movies subtitles as bilingual pdf documents, to learn new languages easily. Our documents use the latin alphabet to make reading new languages easy and natural.<br>Please pick the language you are studying below, and upload the two subtitle files you want to convert to a bilingual pdf document. We support the following formats of subtitle files : .srt, .vtt, .xml, and .ass. Subtitles can be found on <a href="https://www.opensubtitles.org/">opensubtitles.org</a> or on netflix using the technique described <a href="https://github.com/isaacbernat/netflix-to-srt">here</a>. The price of a bilingual pdf document is 5 euro.
+			This website allows you to generate a bilingual pdf document from the subtitles of a movie.<br>
+      Here are some examples of generated pdfs : <a href="https://www.dropbox.com/sh/q60boy3tpslyqyv/AABrNkkkOrwe7n3DXbgfgqgQa?dl=0">dropbox link</a><br>
+      To generate a pdf, select the language you are learning, and upload the subtitle files of your movie. Subtitle files can be found on <a href="https://www.opensubtitles.org/">opensubtitles.org</a> or on netflix using the technique described <a href="https://github.com/isaacbernat/netflix-to-srt">here</a>. We support the following file formats : .srt, .vtt, .xml, and .ass. <br>The price of a pdf document is 3.20 €.
 		</div> 
 		
 		<div>

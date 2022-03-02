@@ -4,7 +4,7 @@
 			Purchase summary
 		</h1>
 		<div class="m-3">
-			After payment, we will send your document to study <b>{{language}}</b> to the email address <b>{{email}}</b> for 5 euros. If the language or the email address is incorrect, please come back to the previous page and choose the correct document and email address.
+			After payment, we will send your document to study <b>{{language}}</b> to the email address <b>{{email}}</b> for 3.20 €. If the language or the email address is incorrect, please come back to the previous page and choose the correct document and email address.
 		</div>
     <stripe-checkout
       ref="checkoutRef"
@@ -42,7 +42,7 @@ export default {
       loading: false,
       lineItems: [
         {
-          price: 'price_1KVHfCL309RW9KQT03B5fosI',
+          price: 'price_1KYmYpL309RW9KQT577ea5ow', // 'price_1KVHfCL309RW9KQT03B5fosI',
           quantity: 1,
         },
       ],
