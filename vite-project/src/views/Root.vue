@@ -83,8 +83,11 @@ function youtube_parser(url){
 		</h1>
 		<div>
 			This website allows you to generate a bilingual pdf document from the subtitles of a movie.<br>
-      Here are extracts (first seven pages) of generated pdfs : <a href="https://www.dropbox.com/sh/q60boy3tpslyqyv/AABrNkkkOrwe7n3DXbgfgqgQa?dl=0">dropbox link</a><br>
-      To generate a pdf, select the language you are learning, and upload the subtitle files of your movie. Subtitle files can be found on <a href="https://www.opensubtitles.org/">opensubtitles.org</a> or on netflix using the technique described <a href="https://github.com/isaacbernat/netflix-to-srt">here</a>. We support the following file formats : .srt, .vtt, .xml, and .ass. <br>The price of a pdf document is 3.20 €.
+      Here are extracts (first 7 pages) of pdfs generated using this website : <a href="https://www.dropbox.com/sh/q60boy3tpslyqyv/AABrNkkkOrwe7n3DXbgfgqgQa?dl=0">dropbox link</a><br>
+      To generate a pdf, select the language you are learning, and upload the subtitle files of your movie. Subtitle files can be found on <a href="https://www.opensubtitles.org/">opensubtitles.org</a> or on netflix using the technique described <a href="https://github.com/isaacbernat/netflix-to-srt">here</a>.
+      We support the following file formats : .srt, .vtt, .xml, and .ass.
+      <br><a href="https://www.youtube.com/watch?v=VfcJpyAOaq4" target="_blank" rel="noopener noreferrer">Video tutorial</a>
+      <br>The price of a pdf document is 3.20 €.
 		</div> 
 		
 		<div>
