@@ -47,6 +47,7 @@ export default {
         },
       ],
 			email:this.$route.params.email,
+			alphabetId:this.$route.params.alphabetId,
 			language:this.$route.params.language,
 			sessionId:''
     };
@@ -67,7 +68,7 @@ export default {
 		cancelURL(){return `https://getmoviessubtitles.netlify.app/cancel`},
 		stripeUrl(){
 			// localhost:5000/stripe_pay/french/nicolas.klarsfeld@gmail.com?id=E3Blxs0Wfco&id=StXPXDij6rw
-			return `${this.backend}/stripe_pay2/${this.language}/${this.email}`
+			return `${this.backend}/stripe_pay2/${this.language}/${this.alphabetId}/${this.email}`
 		}
 	},
 	async mounted() {

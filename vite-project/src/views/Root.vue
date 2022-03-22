@@ -6,6 +6,11 @@ const router = useRouter()
 let languages = ['Arabic', 'Chinese', 'French','Greek','Hebrew','Hindi','Italian','Japanese','Korean','Persian','Portuguese','Russian','Spanish','Thai','Turkish','Vietnamese']
 let language=ref(languages[0])
 
+let alphabets=[{name:'Roman alphabet',id:'roman'},
+							 {name:'Original alphabet',id:'original'},
+							 {name:'Both alphabets',id:'both'},]
+let alphabetId=ref(alphabets[0].id)
+
 let email=ref('')
 
 let url=ref('')
@@ -60,6 +65,7 @@ async function move() {
     params: {
       email: unref(email),
       language: unref(language),
+			alphabetId: unref(alphabetId)
     }
   })
 }
@@ -91,9 +97,16 @@ function youtube_parser(url){
 		</div> 
 		
 		<div>
-			Language: 
+			Language you learn : 
 			<select v-model="language" class="m-2 rounded border-1 border-black">
 				<option v-for="bidule in languages" :id="bidule">{{bidule}}</option>
+			</select>
+		</div>
+
+		<div>
+			Alphabet(s) used for the language you learn : 
+			<select v-model="alphabetId" class="m-2 rounded border-1 border-black">
+				<option v-for="alphabet in alphabets" :value="alphabet.id">{{alphabet.name}}</option>
 			</select>
 		</div>
 
