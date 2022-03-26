@@ -6,6 +6,11 @@ const router = useRouter()
 let languages = ['Arabic', 'Chinese', 'French','Greek','Hebrew','Hindi','Italian','Japanese','Korean','Persian','Portuguese','Russian','Spanish','Thai','Turkish','Vietnamese']
 let language=ref(languages[0])
 
+let alphabets=[{name:'Roman alphabet',id:'roman'},
+							 {name:'Original alphabet',id:'original'},
+							 {name:'Both alphabets',id:'both'},]
+let alphabetId=ref(alphabets[0].id)
+
 let email=ref('')
 
 let url=ref('')
@@ -62,6 +67,7 @@ async function move() {
     params: {
       email: unref(email),
       language: unref(language),
+			alphabetId: unref(alphabetId)
     }
   })
 }
@@ -84,13 +90,27 @@ function youtube_parser(url){
 			NaturaLingua
 		</h1>
 		<div>
-			Using our website, you can download movies subtitles as bilingual pdf documents, to learn new languages easily. Our documents use the latin alphabet to make reading new languages easy and natural.<br>Please pick the language you are studying below, and upload the two subtitle files you want to convert to a bilingual pdf document. We support the following formats of subtitle files : .srt, .vtt, .xml, and .ass. Subtitles can be found on <a href="https://www.opensubtitles.org/">opensubtitles.org</a> or on netflix using the technique described <a href="https://github.com/isaacbernat/netflix-to-srt">here</a>. The price of a bilingual pdf document is 5 euro.
+			This website allows you to generate a bilingual pdf document from the subtitles of a movie.<br>
+      Here are extracts (first 7 pages) of pdfs generated using this website : <a href="https://www.dropbox.com/sh/q60boy3tpslyqyv/AABrNkkkOrwe7n3DXbgfgqgQa?dl=0">dropbox link</a><br>
+      To generate a pdf, select the language you are learning, and upload the subtitle files of your movie. Subtitle files can be found on <a href="https://www.opensubtitles.org/">opensubtitles.org</a> or on netflix using the technique described <a href="https://github.com/isaacbernat/netflix-to-srt">here</a>.
+      We support the following file formats : .srt, .vtt, .xml, and .ass.
+      <br><a href="https://www.youtube.com/watch?v=VfcJpyAOaq4&t=8m02s" target="_blank" rel="noopener noreferrer">Video tutorial with Netflix</a>
+			<br><a href="https://www.youtube.com/watch?v=VfcJpyAOaq4" target="_blank" rel="noopener noreferrer">Video tutorial with OpenSubtitles.org</a>
+			<br><a href="https://github.com/nicokla/subtitles/blob/main/movies.txt" target="_blank" rel="noopener noreferrer">List of movies per languages.</a>
+      <br>The price of a pdf document is 3.20 €.
 		</div> 
 		
 		<div>
-			Language: 
+			Language you learn : 
 			<select v-model="language" class="m-2 rounded border-1 border-black">
 				<option v-for="bidule in languages" :id="bidule">{{bidule}}</option>
+			</select>
+		</div>
+
+		<div>
+			Alphabet(s) used for the language you learn : 
+			<select v-model="alphabetId" class="m-2 rounded border-1 border-black">
+				<option v-for="alphabet in alphabets" :value="alphabet.id">{{alphabet.name}}</option>
 			</select>
 		</div>
 

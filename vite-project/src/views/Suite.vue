@@ -4,7 +4,7 @@
 			Purchase summary
 		</h1>
 		<div class="m-3">
-			After payment, we will send your document to study <b>{{language}}</b> to the email address <b>{{email}}</b> for 5 euros. If the language or the email address is incorrect, please come back to the previous page and choose the correct document and email address.
+			After payment, we will send your document to study <b>{{language}}</b> to the email address <b>{{email}}</b> for 3.20 €. If the language or the email address is incorrect, please come back to the previous page and choose the correct document and email address.
 		</div>
     <stripe-checkout
       ref="checkoutRef"
@@ -42,24 +42,35 @@ export default {
       loading: false,
       lineItems: [
         {
-          price: 'price_1KVHfCL309RW9KQT03B5fosI',
+          price: 'price_1KYmYpL309RW9KQT577ea5ow', // 'price_1KVHfCL309RW9KQT03B5fosI',
           quantity: 1,
         },
       ],
 			email:this.$route.params.email,
+			alphabetId:this.$route.params.alphabetId,
 			language:this.$route.params.language,
 			sessionId:''
     };
   },
   methods: {
     async submit () {
-			if(this.sessionId == ''){
-				window.alert('There was a problem, please try again in a few seconds.')
-			}
-			else{
-				window.alert('After clicking ok, you will be redirected to checkout within a few seconds.')
-				this.$refs.checkoutRef.redirectToCheckout();
-			}
+			// if(this.sessionId == ''){
+			// 	window.alert('There was a problem, please try again in a few seconds.')
+			// }
+			// else{
+			// 	window.alert('After clicking ok, you will be redirected to checkout within a few seconds.')
+			// 	this.$refs.checkoutRef.redirectToCheckout();
+			// }
+			let loader = this.$loading.show({
+					// Optional parameters
+					container: null,
+					canCancel: false,
+					onCancel: this.onCancel,
+			});
+			let truc= await fetch(this.stripeUrl)
+			let trucjson= await truc.json()
+			this.sessionId = trucjson.checkout_session_id
+			this.$refs.checkoutRef.redirectToCheckout();
     },
   },
 	computed:{
@@ -67,12 +78,12 @@ export default {
 		cancelURL(){return `https://getmoviessubtitles.netlify.app/cancel`},
 		stripeUrl(){
 			// localhost:5000/stripe_pay/french/nicolas.klarsfeld@gmail.com?id=E3Blxs0Wfco&id=StXPXDij6rw
-			// return `${this.backend}/stripe_pay2/${this.language}/${this.email}`
-			return `${this.backend}/test2/${this.language}/${this.email}`
+
+			return `${this.backend}/test2/${this.language}/${this.alphabetId}/${this.email}`
 		}
 	},
 	async mounted() {
-		let truc= await fetch(this.stripeUrl)
+		// let truc= await fetch(this.stripeUrl)
 		// let trucjson= await truc.json()
 		// this.sessionId = trucjson.checkout_session_id
 	}

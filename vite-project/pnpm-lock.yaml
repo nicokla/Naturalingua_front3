@@ -6,6 +6,7 @@ specifiers:
   vite: ^2.7.2
   vite-plugin-windicss: ^1.6.1
   vue: ^3.2.25
+  vue-loading-overlay: ^5.0
   vue-multiselect: ^3.0.0-alpha.2
   vue-router: '4'
   windicss: ^3.4.2
@@ -13,6 +14,7 @@ specifiers:
 dependencies:
   '@vue-stripe/vue-stripe': 4.2.9
   vue: 3.2.26
+  vue-loading-overlay: 5.0.3_vue@3.2.26
   vue-multiselect: 3.0.0-alpha.2
   vue-router: 4.0.12_vue@3.2.26
 
@@ -599,6 +601,15 @@ packages:
 
   /vue-coerce-props/1.0.0:
     resolution: {integrity: sha512-4fdRMXO6FHzmE7H4soAph6QmPg3sL/RiGdd+axuxuU07f02LNMns0jMM88fmt1bvSbN+2Wyd8raho6p6nXUzag==}
+    dev: false
+
+  /vue-loading-overlay/5.0.3_vue@3.2.26:
+    resolution: {integrity: sha512-6JWZalwlHF4do3HXsFZGt6PcWYseAI5FuNKpveEkljkzqskDWRr7rYmYHVx2kKu4qIvK0vLpL25T/hpFMNoevQ==}
+    engines: {node: '>=12.13.0'}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.2.26
     dev: false
 
   /vue-multiselect/3.0.0-alpha.2:
