@@ -54,13 +54,23 @@ export default {
   },
   methods: {
     async submit () {
-			if(this.sessionId == ''){
-				window.alert('There was a problem, please try again in a few seconds.')
-			}
-			else{
-				window.alert('After clicking ok, you will be redirected to checkout within a few seconds.')
-				this.$refs.checkoutRef.redirectToCheckout();
-			}
+			// if(this.sessionId == ''){
+			// 	window.alert('There was a problem, please try again in a few seconds.')
+			// }
+			// else{
+			// 	window.alert('After clicking ok, you will be redirected to checkout within a few seconds.')
+			// 	this.$refs.checkoutRef.redirectToCheckout();
+			// }
+			let loader = this.$loading.show({
+					// Optional parameters
+					container: null,
+					canCancel: false,
+					onCancel: this.onCancel,
+			});
+			let truc= await fetch(this.stripeUrl)
+			let trucjson= await truc.json()
+			this.sessionId = trucjson.checkout_session_id
+			this.$refs.checkoutRef.redirectToCheckout();
     },
   },
 	computed:{
@@ -72,9 +82,9 @@ export default {
 		}
 	},
 	async mounted() {
-		let truc= await fetch(this.stripeUrl)
-		let trucjson= await truc.json()
-		this.sessionId = trucjson.checkout_session_id
+		// let truc= await fetch(this.stripeUrl)
+		// let trucjson= await truc.json()
+		// this.sessionId = trucjson.checkout_session_id
 	}
 };
 
